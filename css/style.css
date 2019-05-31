@@ -32,7 +32,8 @@ body.fixed {
 	text-align: center;
 	box-sizing: border-box;
 	z-index: 1;
-	transition: 0.5s;
+	transition-property: padding, height, background-color;
+	transition-duration: 0.5s;
 }
 #header.fix {
 	padding: 25px;
@@ -94,7 +95,6 @@ body.fixed {
 	display: inline-block;
 	color: #666;
 	vertical-align: middle;
-	transition: 0.3s;
 }
 #gnb .menu li.other a {
 	color: #FF5B42;
@@ -108,7 +108,7 @@ body.fixed {
 	width: 0;
 	height: 1px;
 	background-color: #333;
-	transition: 0.3s;
+	transition: width 0.3s, left 0.3s;
 }
 #gnb .menu li.other a::after {
 	background-color: #FF5B42;
@@ -143,7 +143,7 @@ body.fixed {
 }
 #gnb .full_menu_container .full_menu_wrap .close {
 	position: absolute;
-	right: 50px;
+	right: 30px;
 	top: 50px;
 }
 #gnb .full_menu_container .full_menu {
@@ -302,9 +302,8 @@ body.fixed {
 }
 #header .util .shopping .choice {
 	display: inline-block;
-	width: 20px;
+	width: 10px;
 	height: 20px;
-	border-radius: 50%;
 	text-align: center;
 	color: #888;
 	font-size: 0.75em;
@@ -383,7 +382,7 @@ body.fixed {
 }
 /* keyvisual 시작 ----------------------------------- */
 #keyvisual {
-	margin-bottom: 10em;
+	margin-bottom: 5em;
 	width: 100%;
 }
 #keyvisual .wrap {
@@ -450,6 +449,10 @@ body.fixed {
 	margin-left: -20px;
 	margin-top: 20px;
 }
+#keyvisual .wrap .mainControl .playBtn::before {
+	content: '';
+	display: block;
+}
 #keyvisual .wrap .mainControl .play {
 	background: url(../images/play.png) no-repeat 0 0;
 }
@@ -499,7 +502,7 @@ body.fixed {
 #brand {
 	width: 100%;
 	margin: 0 auto;
-	margin-bottom: 10em;
+	margin-bottom: 5em;
 }
 #brand .wrap {
 	margin: 0 auto;
@@ -560,7 +563,7 @@ body.fixed {
 	color: #222;
 	font-weight: 600;
 	font-size: 0.875em;
-	transition: 0.3s;
+	transition: opacity 0.3s;
 }
 #brand dl dd a:hover {
 	opacity: 1;
@@ -607,6 +610,9 @@ body.fixed {
 	}
 	#brand .cont .image img{
 		max-width: 100%;
+	}
+	#brand .cont dl {
+		display: block;
 	}
 }
 @media only screen and (max-width:400px){
@@ -664,7 +670,6 @@ body.fixed {
 }
 #product .product_name dd {
 	font-size: 1.25em;
-	color: #666;
 	font-weight: 300; /* lignt */
 }
 #product .cont1 .line .calumn {
@@ -681,7 +686,6 @@ body.fixed {
 }
 #product .cont1 {
 	background-color: #303030;
-	/* background: url("../images/cont1_bg.jpg") no-repeat 0 100%; */
 	color: #fff;
 }
 #product .cont2 {
@@ -756,7 +760,7 @@ body.fixed {
 	width: 300px;
 	height: 100%;
 	transform: skew(-45deg);
-	transition: 0.5s;
+	transition: right 0.5s;
 }
 #product .cont1 .link::after {
 	background-color: #fff;
@@ -871,7 +875,6 @@ body.fixed {
 	height: 100%;
 	border: 2px solid #FFA356;
 	box-sizing: border-box;
-	transition: 0.3s;
 }
 #product .cont .cont_image .sub_image li.on::before {
 	display: block;
@@ -1075,7 +1078,7 @@ body.fixed {
 }
 #insta .insta_pic li a > img {
 	max-width: 100%;
-	transition: 0.3s;
+	transition: transform 0.3s;
 }
 #insta .insta_pic li a > img.on {
 	transform: scale(1.2);
@@ -1153,9 +1156,6 @@ body.fixed {
 	#insta .insta_pic ul li {
 		width: 70px;
 		margin: 0;
-	}
-	#insta .insta_pic ul li.snsLink {
-		display: none;
 	}
 	#insta .rolling_btn {
 		display: block;

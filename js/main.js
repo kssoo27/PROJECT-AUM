@@ -7,7 +7,7 @@ window.addEventListener("load", function(){
 	var imgN1=0;	// product cont1 이미지 인덱스
 	var imgN2=0;	// product cont2 이미지 인덱스
 	var total;		// 이미지 개수
-
+	
 	$(window).scroll(function(){
 		clearTimeout(timer);
 		timer=setTimeout(function(){
@@ -35,6 +35,18 @@ window.addEventListener("load", function(){
 		winW=$(window).width();
 
 	// 화면크게에 따른 이미지 변환
+	// 메인 배너
+		if(winW <= 800){
+			$(".mainBanner li").eq(0).find("img").attr({src:"images/main_bg1_small.jpg"});
+			$(".mainBanner li").eq(1).find("img").attr({src:"images/main_bg2_small.gif"});
+			$(".mainBanner li").eq(2).find("img").attr({src:"images/main_bg3_small.jpg"});
+		}
+		else {
+			$(".mainBanner li").eq(0).find("img").attr({src:"images/main_bg1.jpg"});
+			$(".mainBanner li").eq(1).find("img").attr({src:"images/main_bg2.gif"});
+			$(".mainBanner li").eq(2).find("img").attr({src:"images/main_bg3.jpg"});
+		}
+	// section 1  브랜드 
 		if(winW <= 400){
 			$(".philosophy img").attr({src:"images/brand_philosophy_small.jpg"});
 		}
@@ -51,14 +63,16 @@ window.addEventListener("load", function(){
 			$(".green_collar img").attr({src:"images/brand_greenCollar.jpg"});
 		}
 		
-	/* insta 이미지 슬라이드 */
+	/* SNS 이미지 */
 		if(winW <= 383){
 			lth=$(".insta_pic li").length;
 			amount=$(".insta_pic li").width();
 			$(".insta_pic ul").css({width:amount*(lth+1)});
+			$(".snsLink").hide();
 		}
 		else{
 			$(".insta_pic ul").css({width:"100%"});
+			$(".snsLink").show();
 		}
 	}).trigger("resize");
 			
@@ -130,8 +144,6 @@ window.addEventListener("load", function(){
 		$.getJSON("data/banner.json", function(banner){
 			$.each(banner, function(k, v){
 				if(k==n){
-					console.log(v);
-
 					$(".intro > li").eq(n).fadeIn(500,function(){
 						$(".intro").css({"background":'url("'+v+'") no-repeat center center'});
 						flag=true; // 실행 플래그 열림.
@@ -179,7 +191,6 @@ window.addEventListener("load", function(){
 		}
 		mainBanner[mainIndex].style.display="block";
 		controlBtnList[mainIndex].classList.add("on");
-		// console.log(mainIndex);
 	}
 	// 자동 배너 실행
 	var intervalBanner=setInterval(bannerChange, 5000);
@@ -338,8 +349,8 @@ window.addEventListener("load", function(){
 			var amount=$(".insta_pic ul li").width();
 			if($(this).attr("class")=="prev"){
 				$(".insta_pic ul").prepend($(".insta_pic ul li").last());
-				// $(".insta_pic ul").css({left:-amount});
-				// $(".insta_pic ul").animate({left:0},500);
+				$(".insta_pic ul").css({left:-amount});
+				$(".insta_pic ul").animate({left:0},500);
 			}
 			else{
 				$(".insta_pic ul").animate({left:-amount},500, function(){
