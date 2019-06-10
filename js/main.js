@@ -1,23 +1,22 @@
 window.addEventListener("load", function(){
-	var windowHeight;	// 윈도우 높이
-	var windowWidth;	// 윈도우 넓이
-	var h;
-	var timer;	// scroll Timeout
-	var productIndex=0;	// product 이미지 인덱스
-	var cont1Index=0;	// product cont1 이미지 인덱스
-	var cont2Index=0;	// product cont2 이미지 인덱스
-	var total;		// 이미지 개수
-	
+	var windowHeight;		// 윈도우 높이
+	var windowWidth;		// 윈도우 넓이
+	var scrollTimer;		// scroll Timeout
+	var productIndex=0;		// product 이미지 인덱스
+	var cont1Index=0;		// product cont1 이미지 인덱스
+	var cont2Index=0;		// product cont2 이미지 인덱스
+	var productImgLength;	// 이미지 개수
+	var instaImgLength=$(".insta_pic li").length;
+/* scroll Event */
 	$(window).scroll(function(){
-		clearTimeout(timer);
-		timer=setTimeout(function(){
+		clearTimeout(scrollTimer);
+		scrollTimer=setTimeout(function(){
 			
 	// Brand translateY 효과--------------------------------------------------------
 			windowTop=$(window).scrollTop();
 			if(windowTop >= $("#brand").offset().top-500){
 				$("#brand li").addClass("on");
 			}
-			
 	// header fixed------------------------------------------------------------
 			if(windowTop >= $("#keyvisual").offset().top){
 				$("#header").addClass("fix");
@@ -29,13 +28,13 @@ window.addEventListener("load", function(){
 			}
 		},50);
 	}).trigger("scroll");
-	
+/* resize Event */
 	$(window).resize(function(){
 		windowHeight=$(window).height();
 		windowWidth=$(window).width();
 
-	// 화면크게에 따른 이미지 변환
-	// 메인 배너
+// 화면크게에 따른 이미지 변환
+// 메인 배너
 		if(windowWidth <= 800){
 			$(".mainBanner li").eq(0).find("img").attr({src:"images/main_bg1_small.jpg"});
 			$(".mainBanner li").eq(1).find("img").attr({src:"images/main_bg2_small.gif"});
@@ -46,7 +45,7 @@ window.addEventListener("load", function(){
 			$(".mainBanner li").eq(1).find("img").attr({src:"images/main_bg2.gif"});
 			$(".mainBanner li").eq(2).find("img").attr({src:"images/main_bg3.jpg"});
 		}
-	// section 1  브랜드 
+// section 1  브랜드 
 		if(windowWidth <= 400){
 			$(".philosophy img").attr({src:"images/brand_philosophy_small.jpg"});
 		}
@@ -63,20 +62,22 @@ window.addEventListener("load", function(){
 			$(".green_collar img").attr({src:"images/brand_greenCollar.jpg"});
 		}
 		
-	/* SNS 이미지 */
+// SNS 이미지
 		if(windowWidth <= 400){
-			instaImgLength=$(".insta_pic li").length;
+			$("#insta").addClass("minSize");
 			$(".insta_pic ul").css({width:((instaImgLength+2)*50)+"%"});
-			instaImgWidth=$(".insta_pic li").width((100/(instaImgLength+2))+"%");
+			$(".insta_pic li").width((100/(instaImgLength+2))+"%");
 		}
-		else{
+		else{			
+			$("#insta").removeClass("minSize");
 			$(".insta_pic ul").css({width:"100%"});
-			instaImgWidth=$(".insta_pic li").width("18%");
+			$(".insta_pic li").width("18%");
 		}
+		instaImgWidth=$(".insta_pic li").width();
 	}).trigger("resize");
 			
-	/* gnb , menu -------------------------------------------------------------------- */
-	// menu active
+/* gnb , menu -------------------------------------------------------------------- */
+// menu active
 	$(".menu li a").hover(
 		function(){
 			$(this).parent().addClass("active");
@@ -85,11 +86,10 @@ window.addEventListener("load", function(){
 			$(this).parent().removeClass("active");
 		}
 	);
-	// menu tab click
+// menu tab click
 	$(".menu_btn").click(function(e){
 		e.preventDefault();
-		
-		// 화면 고정
+	// 화면 고정
 		$("body").addClass("fixed");
 		
 /*		ie 9	
@@ -101,7 +101,7 @@ window.addEventListener("load", function(){
 			$(".full_menu_overlay").show();		
 		}
 	});
-	// overlay click , reset
+// overlay click , reset
 	$(".full_menu_overlay, .close").click(function(e){
 		e.preventDefault();
 
@@ -115,7 +115,7 @@ window.addEventListener("load", function(){
 		$(".full_menu_overlay").hide();
 	});
 	
-	// full_menu li active
+// full_menu li active
 	$(".full_menu li li a").hover(
 		function(){
 			$(this).addClass("active");
@@ -125,8 +125,8 @@ window.addEventListener("load", function(){
 		}
 	);
 	
-	/* intro_banner */
-	// 기본 설정
+/* intro_banner */
+// 기본 설정
 	$(".intro_banner").eq(0).show();
 	$(".banner_btn a").eq(0).addClass("on");
 	
@@ -156,8 +156,8 @@ window.addEventListener("load", function(){
 		$(".banner_btn a").eq(n).addClass("on");
 	});
 
-	/* 배너 a 노드 효과 */	
-	// 기본 설정 ( opacity: 0.5 )
+/* 배너 a 노드 효과 */	
+// 기본 설정 ( opacity: 0.5 )
 	$(".intro_banner a").css({opacity:"0.5"});
 	$(".intro_banner a").hover(
 		function(){
@@ -168,7 +168,7 @@ window.addEventListener("load", function(){
 		}
 	)
 	
-	/* keyvisual */
+/* keyvisual */
 	var mainIndex=0;
 	var mainBanner=document.querySelectorAll(".mainBanner li");
 	var controlBtnList=document.querySelectorAll(".controlBtn li");
@@ -176,7 +176,7 @@ window.addEventListener("load", function(){
 	mainBanner[0].style.display="block";
 	controlBtnList[0].classList.add("on");
 	
-	// 자동 배너 변화
+// 자동 배너 변화
 	var bannerChange=function(){	
 		for(var i=mainIndex; i<mainBanner.length; i++){
 			mainBanner[i].style.display="none";
@@ -191,10 +191,10 @@ window.addEventListener("load", function(){
 		mainBanner[mainIndex].style.display="block";
 		controlBtnList[mainIndex].classList.add("on");
 	}
-	// 자동 배너 실행
+// 자동 배너 실행
 	var intervalBanner=setInterval(bannerChange, 5000);
 	
-	// 자동 배너 재생 및 일시정지
+// 자동 배너 재생 및 일시정지
 	var playBtn=document.querySelector(".playBtn");
 	playBtn.addEventListener("click", function(e){
 		e.preventDefault();
@@ -209,8 +209,8 @@ window.addEventListener("load", function(){
 			this.classList.add("play");
 		}
 	});
-	/* keyvisual control button */
-	// 순서 버튼
+/* keyvisual control button */
+// 순서 버튼
 	for(var i=0; i<controlBtnList.length; i++){
 		controlBtnList[i].index=i;
 		
@@ -271,7 +271,7 @@ window.addEventListener("load", function(){
 			if(turn==1){ // cont1
 				if($(this).next("a").attr("class")!= undefined){ // left btn
 					if($(this).nextAll("ul").find("li").eq(cont1Index).prev("li").find("img").attr("src") == undefined){ // 마지막 순간
-						cont1Index=total-1;
+						cont1Index=productImgLength-1;
 					}
 					else{ // 기본 로직
 						cont1Index--;
@@ -290,7 +290,7 @@ window.addEventListener("load", function(){
 			else if(turn==2){ // cont2
 				if($(this).next("a").attr("class")!= undefined){ // left btn
 					if($(this).nextAll("ul").find("li").eq(cont2Index).prev("li").find("img").attr("src") == undefined){ // 마지막 순간
-						cont2Index=total-1;
+						cont2Index=productImgLength-1;
 					}
 					else{ // 기본 로직
 						cont2Index--;
@@ -357,7 +357,7 @@ window.addEventListener("load", function(){
 			}
 			else{
 				instaIndex++;
-				if(instaIndex==5){
+				if(instaIndex==instaImgLength/2){
 					$(".insta_pic ul").append("<li>"+instaFirstCopy+"</li>");
 					$(".insta_pic ul").append("<li>"+instaSecondCopy+"</li>");
 					$(".insta_pic li").width(instaImgWidth);
@@ -371,7 +371,7 @@ window.addEventListener("load", function(){
 					$(".insta_pic li").first().remove();
 					$(".insta_pic li").first().remove();
 				}
-				else if(instaIndex==5){
+				else if(instaIndex==instaImgLength/2){
 					instaIndex=0;
 					$(".insta_pic ul").css({left:0});
 					$(".insta_pic li").last().remove();

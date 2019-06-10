@@ -447,6 +447,7 @@ body.fixed {
 	height: 40px;
 	position: absolute;
 	top: 50%;
+	left: 50%;
 	margin-left: -20px;
 	margin-top: 20px;
 }
@@ -673,12 +674,6 @@ body.fixed {
 	font-size: 1.25em;
 	font-weight: 300; /* lignt */
 }
-#product .cont1 .line .calumn {
-	background-color: #666;
-}
-#product .cont2 .line .calumn {
-	background-color: #fff;
-}
 /* product 중복 CSS */
 #product .cont {
 	width: 100%;
@@ -701,18 +696,6 @@ body.fixed {
 	padding: 100px 0 50px;
 	position: relative;
 	box-sizing: border-box;
-}
-#product .cont .line {
-	opacity: 0.3;
-}
-#product .cont .line .calumn {
-	position: absolute;
-	display: inline-block;
-	top: 0;
-	width: 1px;
-	height: 100%;
-	text-indent: -9999px;
-	overflow: hidden;
 }
 #product .cont1 .title{
 	width: 40%;
@@ -1129,35 +1112,34 @@ body.fixed {
 		padding: 0 40px;
 	}
 }
-@media only screen and (max-width:400px){
-	#insta {
-		padding: 10px 0;
-	}
-	#insta .insta_pic_wrap {
-		margin: 0 auto;
-		width: 300px;
-		padding: 0 10px;
-		box-sizing: border-box;
-	}
-	#insta .insta_pic {
-		position: relative;
-		width: 100%;
-		border-top: 1px solid #888;
-		border-bottom: 1px solid #888;
-		overflow: hidden;
-	}
-	#insta .insta_pic ul {
-		position: relative;
-	}
-	#insta .insta_pic li {
-		margin: 0;
-	}
-	#insta .insta_pic li:nth-child(5n+1) {
-		margin-left: 0;
-	}
-	#insta .rolling_btn {
-		display: block;
-	}
+/* 400Px 이하 */
+#insta.minSize {
+	padding: 10px 0;
+}
+#insta.minSize .insta_pic_wrap {
+	margin: 0 auto;
+	width: 300px;
+	padding: 0 10px;
+	box-sizing: border-box;
+}
+#insta.minSize .insta_pic {
+	position: relative;
+	width: 100%;
+	border-top: 1px solid #888;
+	border-bottom: 1px solid #888;
+	overflow: hidden;
+}
+#insta.minSize .insta_pic ul {
+	position: relative;
+}
+#insta.minSize .insta_pic li {
+	margin: 0;
+}
+#insta.minSize .insta_pic li:nth-child(5n+1) {
+	margin-left: 0;
+}
+#insta.minSize .rolling_btn {
+	display: block;
 }
 /* footer 시작 ------------------------------------------- */
 #footer {
