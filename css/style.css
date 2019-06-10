@@ -1110,7 +1110,7 @@ body.fixed {
 	position: absolute;
 	width: 30px;
 	line-height: 50px;
-	top: 20px;
+	top: 54px;
 	background-color: #333;
 	text-align: center;
 }
@@ -1129,34 +1129,31 @@ body.fixed {
 		padding: 0 40px;
 	}
 }
-@media only screen and (max-width:820px){
-	#insta .insta_pic {
-	}
-	#insta .insta_pic li {
-	}
-}
 @media only screen and (max-width:400px){
 	#insta {
-		background: none;
 		padding: 10px 0;
+	}
+	#insta .insta_pic_wrap {
+		margin: 0 auto;
+		width: 300px;
+		padding: 0 10px;
+		box-sizing: border-box;
 	}
 	#insta .insta_pic {
 		position: relative;
-		padding: 10px 0;
-		height: 70px;
 		width: 100%;
 		border-top: 1px solid #888;
 		border-bottom: 1px solid #888;
 		overflow: hidden;
 	}
 	#insta .insta_pic ul {
-		position: absolute;
-		left: 0;
-		top: 10px;
+		position: relative;
 	}
-	#insta .insta_pic ul li {
-		width: 70px;
+	#insta .insta_pic li {
 		margin: 0;
+	}
+	#insta .insta_pic li:nth-child(5n+1) {
+		margin-left: 0;
 	}
 	#insta .rolling_btn {
 		display: block;
