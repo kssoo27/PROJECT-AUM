@@ -536,22 +536,22 @@ body.fixed {
 #brand .cont .image {
 	display: block;
 }
-#brand dl {
+#brand .cont dl {
 	padding: 30px;
 	opacity: 0;
-	transform: translateY(100px);
-	transition: transform 1s, opacity 1s;
+	margin-top: 100px;
 	box-sizing: border-box;
+	transition: opacity 1s, margin-top 1s;
 }
-#brand .on dl {
+#brand .cont dl.on {
 	opacity: 1;
-	transform: translateY(0);
+	margin-top: 0;
 }
-#brand dl dt {
+#brand .cont dl dt {
 	font-size: 2.375em;
 	font-weight: 400;
 }
-#brand dl dd {
+#brand .cont dl dd {
 	font-weight: 400;
 	font-size: 1em;
 	line-height: 26px;
@@ -582,7 +582,6 @@ body.fixed {
 #brand .philosophy dl {
 	display: inline-block;
 	text-align: left;
-	transition-delay: 0.4s;
 }
 #brand .green_collar .image {
 	float: right;
@@ -594,7 +593,6 @@ body.fixed {
 	display: inline-block;
 	position: relative;
 	text-align : right;
-	transition-delay: 1s;
 }
 /* media Query */
 @media only screen and (max-width:1100px){
@@ -722,15 +720,14 @@ body.fixed {
 	text-align: center;
 	font-size: 0.875em;
 	overflow: hidden;
+	clear: both;
 }
 #product .cont1 .link {
-	clear: left;
 	float: left;
 	color: #ccc;
 	border: 1px solid #ccc;
 }
 #product .cont2 .link {
-	clear: right;
 	float: right;
 	color: #3c3c3c;
 	border: 1px solid #3c3c3c;

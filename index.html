@@ -13,10 +13,18 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="js/main.js"></script>
 <!--[if ie 8]>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
 <link rel="stylesheet" href="css/style_ie8.css">
 <script src="js/main_ie8.js"></script>
 <![endif]-->
+<!--[if lte ie 9]>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+<script src="js/keyvisual_ie9.js"></script>
+<script src="js/scroll_ie9.js"></script>
+<![endif]-->
+<!--[if gt ie 9]><!-->
+<script src="js/keyvisual.js"></script>
+<script src="js/scroll.js"></script>
+<!--<![endif]-->
 </head>
 
 <body>
@@ -119,9 +127,9 @@
 				</div>
 				<div class="mainControl">
 					<ul class="controlBtn">
-						<li><a href="" class="num">1</a></li>
-						<li><a href="" class="num">2</a></li>
-						<li><a href="" class="num">3</a></li>
+						<li><a href="">1</a></li>
+						<li><a href="">2</a></li>
+						<li><a href="">3</a></li>
 					</ul>
 					<a href="" class="playBtn play"></a>
 				</div>

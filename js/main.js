@@ -1,33 +1,12 @@
 window.addEventListener("load", function(){
 	var windowHeight;		// 윈도우 높이
 	var windowWidth;		// 윈도우 넓이
-	var scrollTimer;		// scroll Timeout
 	var productIndex=0;		// product 이미지 인덱스
 	var cont1Index=0;		// product cont1 이미지 인덱스
 	var cont2Index=0;		// product cont2 이미지 인덱스
 	var productImgLength;	// 이미지 개수
 	var instaImgLength=$(".insta_pic li").length;
-/* scroll Event */
-	$(window).scroll(function(){
-		clearTimeout(scrollTimer);
-		scrollTimer=setTimeout(function(){
-			
-	// Brand translateY 효과--------------------------------------------------------
-			windowTop=$(window).scrollTop();
-			if(windowTop >= $("#brand").offset().top-500){
-				$("#brand li").addClass("on");
-			}
-	// header fixed------------------------------------------------------------
-			if(windowTop >= $("#keyvisual").offset().top){
-				$("#header").addClass("fix");
-				$(".util").animate({top:"5px"},300);
-			}
-			else{
-				$("#header").removeClass("fix");
-				$(".util").animate({top:"0"},300);
-			}
-		},50);
-	}).trigger("scroll");
+
 /* resize Event */
 	$(window).resize(function(){
 		windowHeight=$(window).height();
@@ -167,70 +146,6 @@ window.addEventListener("load", function(){
 			$(this).stop().animate({opacity:0.5},300)
 		}
 	)
-	
-/* keyvisual */
-	var mainIndex=0;
-	var mainBanner=document.querySelectorAll(".mainBanner li");
-	var controlBtnList=document.querySelectorAll(".controlBtn li");
-	
-	mainBanner[0].style.display="block";
-	controlBtnList[0].classList.add("on");
-	
-// 자동 배너 변화
-	var bannerChange=function(){	
-		for(var i=mainIndex; i<mainBanner.length; i++){
-			mainBanner[i].style.display="none";
-			controlBtnList[i].classList.remove("on");
-		}
-		if(mainIndex<i-1){
-			mainIndex++;
-		}
-		else{
-			mainIndex=0;
-		}
-		mainBanner[mainIndex].style.display="block";
-		controlBtnList[mainIndex].classList.add("on");
-	}
-// 자동 배너 실행
-	var intervalBanner=setInterval(bannerChange, 5000);
-	
-// 자동 배너 재생 및 일시정지
-	var playBtn=document.querySelector(".playBtn");
-	playBtn.addEventListener("click", function(e){
-		e.preventDefault();
-		if(this.classList.contains("play")==true){
-			clearInterval(intervalBanner);
-			this.classList.remove("play");
-			this.classList.add("pause");
-		}
-		else if(this.classList.contains("pause")==true){
-			intervalBanner=setInterval(bannerChange, 5000);
-			this.classList.remove("pause");
-			this.classList.add("play");
-		}
-	});
-/* keyvisual control button */
-// 순서 버튼
-	for(var i=0; i<controlBtnList.length; i++){
-		controlBtnList[i].index=i;
-		
-		controlBtnList[i].addEventListener("click", function(e){
-			e.preventDefault();
-			
-			for(var j=0; j<controlBtnList.length; j++){
-				controlBtnList[j].classList.remove("on");
-				mainBanner[j].style.display="none";
-			}
-			this.classList.add("on");
-			mainBanner[this.index].style.display="block";
-			mainIndex=this.index;
-			if(playBtn.classList.contains("play")==true){
-				clearInterval(intervalBanner);
-				intervalBanner=setInterval(bannerChange, 5000);
-			}
-		});
-	}
-	
 /* product ------------------------------------------------------------------------- */
 // 기본 값
 	$(".cont1 .sub_image li").eq(0).addClass("on");
