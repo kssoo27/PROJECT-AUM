@@ -1,5 +1,5 @@
 $(function(){
-	var scrollTimer	// scroll Timeout
+	var scrollTimer='';	// scroll Timeout
 	var brandScrollFlag=true;
 	var headerScrollFlag=true;
 	/* scroll Event */
@@ -27,6 +27,6 @@ $(function(){
 				$("#header").css({background:"none"});
 				$(".util").stop().animate({top:"0"},300);
 			}
-		},50);
+		},30);
 	}).trigger("scroll");
 });

@@ -1,5 +1,5 @@
 $(function(){
-	var scrollTimer	// scroll Timeout
+	var scrollTimer='';	// scroll Timeout
 	/* scroll Event */
 	$(window).scroll(function(){
 		clearTimeout(scrollTimer);
@@ -18,6 +18,6 @@ $(function(){
 				$("#header").removeClass("fix");
 				$(".util").animate({top:"0"},300);
 			}
-		},50);
+		},30);
 	}).trigger("scroll");
 });

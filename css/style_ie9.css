@@ -1,21 +1,69 @@
-/* clearfix */
-.clearfix:before,
-.clearfix:after {
-	content:'';
-	display:block;
+#gnb .menu li a .underline {
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	width: 0;
+	height: 1px;
+	background: url("../images/underline_Black.png");
+	background-repeat: no-repeat;
+	background-size: 100% 30px;
 }
-.clearfix:after {
-	clear: both;
+#gnb .menu li.other a .underline {
+	background-image: url("../images/underline_Red.png");
 }
-#brand dl {
-	background:url("../images/opacity.png") no-repeat;
+#gnb .full_menu_container .full_menu ul li a .underline {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 1px;
+	width: 0;
+	background: url("../images/underline_Red.png") no-repeat;
+	background-size: 100% 30px;
 }
-#product .cont .cont_image .sub_image li.on:before {
-	content: '';
+#brand .cont dl {
+	margin-top: 100px;
+}
+#product .cont .link::before {
+	display: none;
+}
+#product .cont .link::after {
+	content: "상세히 보기";
 	display: block;
 	position: absolute;
+	left: 0;
+	top: 0;
 	width: 100%;
 	height: 100%;
-	box-sizing: border-box;
-	border:2px solid #FFA356;
 }
+#product .cont1 .link::after {
+	color: #222;
+}
+#product .cont2 .link::after {
+	color: #fff;
+}
+#product .cont .link .background {
+	position: absolute;
+	width: 120%;
+	height: 100%;
+	top: 0;
+	right: 90%;
+}
+#product .cont1 .link .background {
+	background: url(../images/link_white.png) no-repeat center right;
+}
+#product .cont2 .link .background {
+	background: url(../images/link_black.png) no-repeat center right;
+}
+#insta .insta_pic li a {
+	position: relative;
+}
+#insta .insta_pic li a > img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120%;
+}
+/* #insta .insta_pic li.snsLink span { */
+	/* font-size: 0.75rem; */
+	/* line-height: 1em; */
+/* } */

@@ -1,16 +1,20 @@
 window.addEventListener("load", function(){
-	var windowHeight;		// 윈도우 높이
-	var windowWidth;		// 윈도우 넓이
+	var windowHeight="";		// 윈도우 높이
+	var windowWidth="";		// 윈도우 넓이
 	var productIndex=0;		// product 이미지 인덱스
 	var cont1Index=0;		// product cont1 이미지 인덱스
 	var cont2Index=0;		// product cont2 이미지 인덱스
-	var productImgLength;	// 이미지 개수
+	var productImgLength="";	// 이미지 개수
 	var instaImgLength=$(".insta_pic li").length;
 
 /* resize Event */
 	$(window).resize(function(){
 		windowHeight=$(window).height();
 		windowWidth=$(window).width();
+
+		if(windowWidth<=1100 && windowWidth >=400){
+			$(".full_menu_overlay").addClass("active");		
+		}
 
 // 화면크게에 따른 이미지 변환
 // 메인 배너
@@ -27,9 +31,6 @@ window.addEventListener("load", function(){
 // section 1  브랜드 
 		if(windowWidth <= 400){
 			$(".philosophy img").attr({src:"images/brand_philosophy_small.jpg"});
-		}
-		else if(windowWidth <=820){
-			$(".philosophy img").attr({src:"images/brand_philosophy_medium.jpg"});
 		}
 		else {
 			$(".philosophy img").attr({src:"images/brand_philosophy.jpg"});
@@ -52,64 +53,16 @@ window.addEventListener("load", function(){
 			$(".insta_pic ul").css({width:"100%"});
 			$(".insta_pic li").width("18%");
 		}
-		instaImgWidth=$(".insta_pic li").width();
+		instaImgWidth=$(".insta_pic li:first-child").width();
+		$(".insta_pic li").height(instaImgWidth);
 	}).trigger("resize");
-			
-/* gnb , menu -------------------------------------------------------------------- */
-// menu active
-	$(".menu li a").hover(
-		function(){
-			$(this).parent().addClass("active");
-		},
-		function(){
-			$(this).parent().removeClass("active");
-		}
-	);
-// menu tab click
-	$(".menu_btn").click(function(e){
-		e.preventDefault();
-	// 화면 고정
-		$("body").addClass("fixed");
-		
-/*		ie 9	
-		$(".full_menu_container").animate({"margin-left":"0"},500);
-		$(".full_menu_wrap").animate({"margin-left":"0"},500);
-*/			
-		$(".full_menu_container").addClass("on");
-		if(windowWidth<=1100 && windowWidth >=400){
-			$(".full_menu_overlay").show();		
-		}
-	});
-// overlay click , reset
-	$(".full_menu_overlay, .close").click(function(e){
-		e.preventDefault();
-
-		$(".full_menu_container").removeClass("on");
-		$("body").removeClass("fixed");
-		
-/*		ie 9
-		$(".full_menu_container").animate({"margin-left":"-100%"},500);
-		$(".full_menu_wrap").animate({"margin-left":"100%"},500);
-*/
-		$(".full_menu_overlay").hide();
-	});
-	
-// full_menu li active
-	$(".full_menu li li a").hover(
-		function(){
-			$(this).addClass("active");
-		},
-		function(){
-			$(this).removeClass("active");
-		}
-	);
 	
 /* intro_banner */
 // 기본 설정
 	$(".intro_banner").eq(0).show();
 	$(".banner_btn a").eq(0).addClass("on");
 	
-	// 배너 버튼 클릭시
+// 배너 버튼 클릭시
 	var flag=true; // 실행 플래그
 	$(".banner_btn a").click(function(e){
 		e.preventDefault();
@@ -145,7 +98,18 @@ window.addEventListener("load", function(){
 		function(){
 			$(this).stop().animate({opacity:0.5},300)
 		}
-	)
+	);
+/*brand a 노드 효과*/
+	$("#brand dd a").css({opacity:"0.5"});
+	$("#brand dd a").hover(
+		function(){
+			$(this).stop().animate({opacity:1},300)
+		},
+		function(){
+			$(this).stop().animate({opacity:0.5},300)
+		}
+	);
+
 /* product ------------------------------------------------------------------------- */
 // 기본 값
 	$(".cont1 .sub_image li").eq(0).addClass("on");
@@ -229,15 +193,7 @@ window.addEventListener("load", function(){
 			$(this).nextAll("ul").find("li").eq(productIndex).show();
 		});
 	});
-// .link 글씨 색 변화
-	$(".link").hover(
-		function(){
-			$(this).addClass("enter");
-		},
-		function(){
-			$(this).removeClass("enter");
-		}
-	);
+	
 /* 인스타 insta ---------------------------------------------------------------------  */
 	var instaIndex=0;
 	var instaImgWidth=$(".insta_pic ul li").width();
@@ -245,22 +201,13 @@ window.addEventListener("load", function(){
 	var instaSecondCopy=$(".insta_pic ul li").eq(1).html();
 	var instaEndCopy=$(".insta_pic ul li").eq(instaImgLength-1).html();
 	var instaEndPrevCopy=$(".insta_pic ul li").eq(instaImgLength-2).html();
-// 인스타 사진 크기 증가
-	$(".insta_pic img").hover(
-		function(){
-			$(this).addClass("on")
-		},
-		function(){
-			$(this).removeClass("on")
-		}
-	);
+
 // 모바일 해상도 좌우 버튼
 	$(".rolling_btn a").each(function(){
 		$(this).click(function(e){	
 			e.preventDefault();
-			if($(".insta_pic ul").is(":animated")==true){
-				return false;
-			}
+			if($(".insta_pic ul").is(":animated")==true) return false;
+			
 			if($(this).attr("class")=="prev"){
 				instaIndex--;
 				if(instaIndex==-1){
